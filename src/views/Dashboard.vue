@@ -1,6 +1,7 @@
 <template>
   <div class="Dashboard">
     <router-link class="link" to="/">Back</router-link>
+    <h1>I am a header holding text</h1>
   </div>
 </template>
 
