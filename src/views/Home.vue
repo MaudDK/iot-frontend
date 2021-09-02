@@ -25,6 +25,7 @@ export default {
 }
 
 .link {
+  text-decoration: none;
   color: rgb(0, 0, 0) !important;
   font-weight: bold !important;
   transition: 0.5s;
