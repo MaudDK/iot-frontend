@@ -1,7 +1,13 @@
 <template>
   <div class="login-box d-flex align-items-center">
     <div class="login-content container">
-      <h1 class="login-title text-center">Login Here</h1>
+      <img
+        src="../assets/logoNuclear.png"
+        width="290"
+        height="116"
+        class="logo-image align-self-center"
+      />
+      <h1 class="login-title text-center">Login</h1>
       <form>
         <div class="login-user">
           <p class="input-title">Username</p>
@@ -42,16 +48,16 @@ export default {
 <style scoped>
 .login-box {
   border-radius: 20px;
-  width: 320px;
-  height: 420px;
-  background-color: #000000;
+  width: 350px;
+  height: 450px;
+  background-color: #0e1225e3;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
 }
 
 .login-content {
   color: white;
   padding: 30px;
-  padding-top: 70px;
+  padding-top: 20px;
 }
 
 .login-title {
@@ -82,7 +88,7 @@ export default {
   outline: none;
   width: 100%;
   height: 40px;
-  background: #5ccb8c9c;
+  background: #4955ff9c;
   color: #fff;
   font-size: 18px;
   border-radius: 20px;
@@ -91,8 +97,8 @@ export default {
 }
 
 .submit-button:hover {
-  background: #ffc107;
-  color: #000;
+  background: #4eacaf;
+  color: white;
 }
 
 .login-misc a {

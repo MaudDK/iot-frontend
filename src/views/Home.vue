@@ -8,7 +8,8 @@
       align-items-center
     "
   >
-    <LoginComponent />
+    <Stars />
+    <LoginComponent class="login" />
   </div>
 </template>
 
@@ -16,11 +17,13 @@
 // @ is an alias to /src
 // import navbar from "@/components/navbar.vue";
 import LoginComponent from "@/components/LoginComponent.vue";
+import Stars from "../components/Stars.vue";
 
 export default {
   name: "Home",
   components: {
     LoginComponent,
+    Stars,
   },
 };
 </script>
@@ -30,5 +33,8 @@ export default {
   min-height: 100vh;
   padding: 0px;
   margin: 0px;
+}
+.login {
+  z-index: 1;
 }
 </style>
