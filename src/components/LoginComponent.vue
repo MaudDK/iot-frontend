@@ -1,12 +1,9 @@
 <template>
   <div class="login-box d-flex align-items-center">
     <div class="login-content container">
-      <img
-        src="../assets/logoNuclear.png"
-        width="290"
-        height="116"
-        class="logo-image align-self-center"
-      />
+      <div class="logo-image row align-self-center justify-content-center">
+        <img src="../assets/logoNuclear.png" class="logo" />
+      </div>
       <h1 class="login-title text-center">Login</h1>
       <form>
         <div class="login-user">
@@ -48,7 +45,7 @@ export default {
 <style scoped>
 .login-box {
   border-radius: 20px;
-  width: 350px;
+  width: 320px;
   height: 450px;
   background-color: #0e1225e3;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
@@ -64,6 +61,7 @@ export default {
   font-size: 22px;
   font-weight: bold;
   margin: 0px;
+  justify-self: center;
   padding-bottom: 20px;
 }
 .input-title {
@@ -111,5 +109,11 @@ export default {
 
 .login-misc a:hover {
   color: #ffc107;
+}
+
+.logo {
+  width: 290px;
+  height: 116px;
+  padding: 0px;
 }
 </style>
