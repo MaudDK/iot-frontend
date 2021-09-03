@@ -1,47 +1,19 @@
 <template>
-  <div class="home">
+  <body>
     <div class="loginbox">
-      <div class="logintitle">
-        <h1>Log In to Your Account</h1>
-      </div>
-      <div class="loginform">
-        <form action="action_page.php" method="post">
-          <div class="imgcontainer">
-            <img src="img_avatar2.png" alt="Avatar" class="avatar" />
-          </div>
-
-          <div class="container">
-            <label for="uname"><b>Username</b></label>
-            <input
-              type="text"
-              placeholder="Enter Username"
-              name="uname"
-              required
-            />
-
-            <label for="psw"><b>Password</b></label>
-            <input
-              type="password"
-              placeholder="Enter Password"
-              name="psw"
-              required
-            />
-
-            <button type="submit">Login</button>
-            <label>
-              <input type="checkbox" checked="checked" name="remember" />
-              Remember me
-            </label>
-          </div>
-
-          <div class="container" style="background-color: #f1f1f1">
-            <button type="button" class="cancelbtn">Cancel</button>
-            <span class="psw">Forgot <a href="#">password?</a></span>
-          </div>
-        </form>
-      </div>
+      <h1>Login Here</h1>
+      <form>
+        <p>Username</p>
+        <input type="text" name="" placeholder="Enter Username">
+        <p>Password</p>
+        <input type="password" name="" placeholder="Enter Password">
+        <input type="submit" name="" value="Login">
+        <br>
+        <a href="#">Lost your password?</a><br>
+        <a href="#">Don't have an account? Sign up</a>
+      </form>
     </div>
-  </div>
+  </body>
 </template>
 
 <script>
@@ -55,24 +27,85 @@ export default {
 </script>
 
 <style scoped>
-.home {
+body {
+  margin: 0;
+  padding: 0;
   display: flex;
   min-height: 100vh;
-  background-color: rgb(34, 34, 34);
-  justify-content: center;
-  align-items: center;
+  background-color: #79837d;
+  font-family: sans-serif;
 }
-.logintitle {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  padding-top: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+.loginbox{
+  width: 320px;
+  height: 420px;
+  background: #000;
+  color: #fff;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  padding: 70px 30px;
+  border-radius: 20px;
 }
-.loginbox {
-  background-color: white;
-  height: 600px;
-  width: 500px;
-  border-radius: 10px;
+
+h1 {
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.loginbox p {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+.loginbox input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.loginbox input[type="text"], input[type="password"] {
+  border: none;
+  border-bottom: 1px solid;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #fff;
+  font-size: 16px;
+
+}
+
+.loginbox input[type="submit"]
+{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #5ccb8c9c;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+.loginbox input[type="submit"]:hover {
+  cursor: pointer;
+  background: #ffc107;
+  color: #000;
+}
+
+.loginbox a{
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 20px;
+  color: darkgray;
+}
+
+.loginbox a:hover{
+  cursor: pointer;
+  color: ffc107;
 }
 </style>
