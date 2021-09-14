@@ -25,11 +25,18 @@
           />
         </div>
         <div class="login-submit">
-          <input class="submit-button" type="submit" name="" value="Login" />
+          <router-link class="link" to="/dashboard">
+            <input class="submit-button" type="submit" name="" value="Login" />
+          </router-link>
         </div>
         <div class="login-misc">
-          <a href="#">Lost your password?</a><br />
-          <a href="#">Don't have an account? Sign up</a>
+          <router-link class="link" to="/reset">
+            <a href="#">Lost your password?</a>
+          </router-link>
+          <br />
+          <router-link class="link" to="/register">
+            <a href="#">Don't have an account? Sign up</a>
+          </router-link>
         </div>
       </form>
     </div>
