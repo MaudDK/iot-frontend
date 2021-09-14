@@ -1,7 +1,7 @@
 <template>
-  <div class="Dashboard">
+  <div class="Reset">
     <router-link class="link" to="/">Back</router-link>
-    <h1 style="color: white">Dashboard</h1>
+    <h1 style="color: white">Reset</h1>
   </div>
 </template>
 
@@ -10,7 +10,7 @@
 // import TestComponent from "@/components/TestComponent.vue";
 
 export default {
-  name: "Dashboard",
+  name: "Reset",
   components: {},
 };
 </script>
