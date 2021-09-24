@@ -20,6 +20,5 @@ export default {
   min-height: 100vh;
   background-color: rgb(35, 39, 65);
   font-family: sans-serif;
-  z-index: 0;
 }
 </style>

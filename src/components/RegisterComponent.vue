@@ -4,34 +4,31 @@
       <div class="logo-image row align-self-center justify-content-center">
         <img src="../assets/logoNuclear.png" class="logo" />
       </div>
-      <h1 class="login-title text-center">Login</h1>
-      <form @submit.prevent="login">
+      <h1 class="login-title text-center">Register</h1>
+      <form @submit.prevent="handleSubmit">
         <div class="login-user">
+          <label class="input-title">Email</label>
+          <input class="login-input" type="email" placeholder="Enter Email" />
           <label class="input-title">Username</label>
-          <input
-            v-model="username"
-            class="login-input"
-            type="text"
-            placeholder="Enter Username"
-            required
-          />
+          <input class="login-input" type="text" placeholder="Enter Username" />
         </div>
         <div class="login-password">
           <label class="input-title">Password</label>
           <input
-            v-model="password"
             class="login-input"
             type="password"
             placeholder="Enter Password"
-            required
           />
-        </div>
-        <div v-if="message" class="login-alert">
-          {{ message }}
+          <label class="input-title">AuthKey</label>
+          <input class="login-input" type="text" placeholder="Enter AuthKey" />
         </div>
         <div class="login-submit">
-          <font-awesome-icon icon="fa-solid fa-exclamation" />
-          <button class="submit-button" type="submit">Login</button>
+          <input class="submit-button" type="submit" value="Register" />
+        </div>
+        <div class="login-misc">
+          <router-link class="link" to="/">
+            <a href="#">Have an account? Login here</a>
+          </router-link>
         </div>
       </form>
     </div>
@@ -40,52 +37,23 @@
 
 <script>
 export default {
-  name: "LoginComponent",
-  props: {
-    msg: String,
-  },
+  name: "RegisterComponent",
   data() {
-    return {
-      username: "",
-      password: "",
-      message: "",
-    };
+    return {};
   },
   methods: {
-    login() {
-      this.$store
-        .dispatch("login", {
-          username: this.username,
-          password: this.password,
-        })
-        .then(() => {
-          this.$router.push({ name: "Dashboard" });
-        })
-        .catch((error) => {
-          this.message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-        });
+    handleSubmit() {
+      console.log("submited");
     },
   },
 };
 </script>
 
 <style scoped>
-.login-alert {
-  color: #d93025;
-  font-size: 12px;
-  line-height: normal;
-  margin-bottom: 15px;
-  align-items: flex-start;
-}
 .login-box {
   border-radius: 20px;
-  width: 320px;
-  height: 450px;
+  width: 375px;
+  height: 625px;
   background-color: #0e1225e3;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
 }

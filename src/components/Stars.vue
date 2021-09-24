@@ -11,7 +11,7 @@
     :lineLinked="true"
     :lineOpacity="0"
     :linesDistance="100"
-    :moveSpeed="1.25"
+    :moveSpeed="1.55"
     :hoverEffect="false"
     hoverMode="grab"
     :clickEffect="false"
