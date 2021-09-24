@@ -26,7 +26,11 @@
             required
           />
         </div>
+        <div v-if="message" class="login-alert">
+          {{ message }}
+        </div>
         <div class="login-submit">
+          <font-awesome-icon icon="fa-solid fa-exclamation" />
           <button class="submit-button" type="submit">Login</button>
         </div>
       </form>
@@ -44,6 +48,7 @@ export default {
     return {
       username: "",
       password: "",
+      message: "",
     };
   },
   methods: {
@@ -56,8 +61,13 @@ export default {
         .then(() => {
           this.$router.push({ name: "Dashboard" });
         })
-        .catch((err) => {
-          console.log(err);
+        .catch((error) => {
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
         });
     },
   },
@@ -65,6 +75,13 @@ export default {
 </script>
 
 <style scoped>
+.login-alert {
+  color: #d93025;
+  font-size: 12px;
+  line-height: normal;
+  margin-bottom: 15px;
+  align-items: flex-start;
+}
 .login-box {
   border-radius: 20px;
   width: 320px;
