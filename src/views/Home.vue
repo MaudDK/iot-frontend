@@ -8,8 +8,8 @@
       align-items-center
     "
   >
-    <Stars />
     <LoginComponent class="login" />
+    <Stars class="stars" />
   </div>
 </template>
 
@@ -17,7 +17,7 @@
 // @ is an alias to /src
 // import navbar from "@/components/navbar.vue";
 import LoginComponent from "@/components/LoginComponent.vue";
-import Stars from "../components/Stars.vue";
+import Stars from "@/components/Stars.vue";
 
 export default {
   name: "Home",
@@ -33,6 +33,9 @@ export default {
   min-height: 100vh;
   padding: 0px;
   margin: 0px;
+}
+.stars {
+  z-index: 0;
 }
 .login {
   z-index: 1;
