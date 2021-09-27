@@ -2,7 +2,7 @@
   <div class="login-box d-flex align-items-center">
     <div class="login-content container">
       <div class="logo-image row align-self-center justify-content-center">
-        <img src="../assets/logoNuclear.png" class="logo" />
+        <img src="https://i.imgur.com/sIgoD5T.png" class="logo" />
       </div>
       <h1 class="login-title text-center">Login</h1>
       <form @submit.prevent="login">
@@ -30,7 +30,6 @@
           {{ message }}
         </div>
         <div class="login-submit">
-          <font-awesome-icon icon="fa-solid fa-exclamation" />
           <button class="submit-button" type="submit">Login</button>
         </div>
       </form>

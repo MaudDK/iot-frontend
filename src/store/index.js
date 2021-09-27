@@ -6,6 +6,7 @@ axios.defaults.baseURL = "http://0.0.0.0:80/";
 export default createStore({
   state: {
     user: null,
+    sensors: null,
   },
   mutations: {
     setUserData(state, userData) {
@@ -18,6 +19,10 @@ export default createStore({
       localStorage.removeItem("user");
       location.reload();
     },
+
+    setUserSensors(state,data){
+      state.sensors = data;
+    }
   },
   actions: {
     register({ commit }, credentials) {
@@ -38,10 +43,16 @@ export default createStore({
         commit("clearUserData");
       });
     },
+    sensors({ commit }, credentials) {
+      return axios.get("/api/sensors", credentials).then(({ data }) => {
+        commit("setUserSensors", data);
+      });
+    },
   },
   getters: {
     getName: (state) => state.user.user,
     isLogged: (state) => !!state.user,
+    allSensors: (state) => state.sensors,
   },
   modules: {},
 });
