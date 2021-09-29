@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://0.0.0.0:80/";
+axios.defaults.baseURL = "http://192.168.100.2:80/";
 
 export default createStore({
   state: {
