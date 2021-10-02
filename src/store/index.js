@@ -48,6 +48,14 @@ export default createStore({
         commit("setUserSensors", data);
       });
     },
+    timedsensors({ commit }, credentials) {
+      setInterval(() => {
+        axios.get("/api/sensors", credentials).then(({ data }) => {
+        commit("setUserSensors", data);
+        });
+      }, 5000);
+    },
+
   },
   getters: {
     getName: (state) => state.user.user,
