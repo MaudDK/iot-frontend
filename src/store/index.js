@@ -30,11 +30,16 @@ export default createStore({
         commit("setUserData", data);
       });
     },
-
+    
     login({ commit }, credentials) {
         return axios.post("/api/login", credentials).then(({ data }) => {
           commit("setUserData", data);
         });
+    },
+
+    reset({ commit }) {
+        commit("clearUserData");
+        alert("Session Expired, Logged In From Another Location")
     },
 
     logout({ commit }, credentials) {

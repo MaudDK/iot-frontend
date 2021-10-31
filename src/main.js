@@ -17,6 +17,11 @@ createApp({
         axios.interceptors.response.use(
             (response) => response,
             (error) => {
+                if (error.response.status === 401) {
+                    this.$store.dispatch("reset").then(() => {
+                        this.$router.push({ name: "Home" });
+                      })
+                }
                 return Promise.reject(error);
             }
         );

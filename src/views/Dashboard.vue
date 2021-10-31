@@ -47,9 +47,9 @@ export default {
     this.$store.dispatch("sensors").catch((err) => {
       console.log(err);
     });
-    // this.$store.dispatch("timedsensors").catch((err) => {
-    //   console.log(err);
-    // });
+    this.$store.dispatch("timedsensors").catch((err) => {
+      console.log(err);
+    });
   },
 };
 </script>
