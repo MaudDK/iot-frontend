@@ -2,7 +2,7 @@
   <div class="login-box d-flex align-items-center">
     <div class="login-content container">
       <div class="logo-image row align-self-center justify-content-center">
-        <img src="../assets/logoNuclear.png" class="logo" />
+        <img src="../assets/logo.png" class="logo" />
       </div>
       <h1 class="login-title text-center">Register</h1>
       <form @submit.prevent="handleSubmit">

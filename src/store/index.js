@@ -1,11 +1,12 @@
 import { createStore } from "vuex";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://0.0.0.0:80/";
+axios.defaults.baseURL = "http://192.168.100.2:80/";
 
 export default createStore({
   state: {
     user: null,
+    sensors: null,
   },
   mutations: {
     setUserData(state, userData) {
@@ -18,6 +19,10 @@ export default createStore({
       localStorage.removeItem("user");
       location.reload();
     },
+
+    setUserSensors(state,data){
+      state.sensors = data;
+    }
   },
   actions: {
     register({ commit }, credentials) {
@@ -25,11 +30,16 @@ export default createStore({
         commit("setUserData", data);
       });
     },
-
+    
     login({ commit }, credentials) {
         return axios.post("/api/login", credentials).then(({ data }) => {
           commit("setUserData", data);
         });
+    },
+
+    reset({ commit }) {
+        commit("clearUserData");
+        alert("Session Expired, Logged In From Another Location")
     },
 
     logout({ commit }, credentials) {
@@ -38,10 +48,24 @@ export default createStore({
         commit("clearUserData");
       });
     },
+    sensors({ commit }, credentials) {
+      return axios.get("/api/sensors", credentials).then(({ data }) => {
+        commit("setUserSensors", data);
+      });
+    },
+    timedsensors({ commit }, credentials) {
+      setInterval(() => {
+        axios.get("/api/sensors", credentials).then(({ data }) => {
+        commit("setUserSensors", data);
+        });
+      }, 5000);
+    },
+
   },
   getters: {
     getName: (state) => state.user.user,
     isLogged: (state) => !!state.user,
+    allSensors: (state) => state.sensors,
   },
   modules: {},
 });
