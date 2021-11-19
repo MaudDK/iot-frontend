@@ -87,7 +87,7 @@ export default {
   font-size: 1em;
   margin: 0;
   position: relative;
-  left: 35px;
+  left: 50px;
   top: -28px;
 }
 
