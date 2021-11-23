@@ -38,8 +38,7 @@ export default createStore({
     },
 
     reset({ commit }) {
-        commit("clearUserData");
-        alert("Session Expired, Logged In From Another Location")
+      commit("clearUserData");
     },
 
     logout({ commit }, credentials) {
@@ -60,6 +59,7 @@ export default createStore({
         });
       }, 5000);
     },
+
 
   },
   getters: {

@@ -1,8 +1,8 @@
 <template>
-  <div class="project-card d-flex justify-content-center m-1">
+  <div class="sensor-card d-flex justify-content-center m-1">
     <div class="sensor-background-layer">
       <div class="content">
-        <h3 class="project-title">{{ name }}</h3>
+        <h3 class="sensor-title">{{ name }}</h3>
         <p class="sensor-info">
           Building: {{ building }}
           <br />
@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style scoped>
-.project-card {
+.sensor-card {
   /* border: 5px solid rgb(100, 151, 96); */
   border: 2px solid rgb(152, 235, 146);
   border-radius: 100%;
@@ -58,7 +58,7 @@ export default {
   margin: 0;
 }
 
-.project-title {
+.sensor-title {
   font-size: 1.3em;
   font-weight: 600;
   color: white;
@@ -68,7 +68,7 @@ export default {
   transition: 0.5s;
 }
 
-.project-number {
+.sensor-number {
   position: relative;
   right: -180px;
   font-size: 2em;
@@ -87,7 +87,7 @@ export default {
   font-size: 1em;
   margin: 0;
   position: relative;
-  left: 35px;
+  left: 50px;
   top: -28px;
 }
 

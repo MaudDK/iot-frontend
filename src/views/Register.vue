@@ -13,8 +13,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import navbar from "@/components/navbar.vue";
 import RegisterComponent from "@/components/RegisterComponent.vue";
 
 export default {

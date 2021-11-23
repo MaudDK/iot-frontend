@@ -14,8 +14,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import navbar from "@/components/navbar.vue";
 import LoginComponent from "@/components/LoginComponent.vue";
 import Stars from "@/components/Stars.vue";
 
