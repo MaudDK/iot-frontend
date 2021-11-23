@@ -1,12 +1,42 @@
 <template>
   <div class="searchbar container-fluid">
-    <div class="row">
-      <div class="table-item col-6">Sensor Table</div>
+    <div class="row filters col-12">
+      <div class="table-item col-3">
+        <input
+          type="text"
+          class="search-box"
+          v-model="searchValue"
+          placeholder="Search Name"
+        />
+      </div>
+      <div class="table-item col-2">
+        <input
+          type="number"
+          class="reading-range-min"
+          v-model="greaterThan"
+          placeholder="Min"
+        />
+        <input
+          type="number"
+          class="reading-range-max"
+          v-model="lessThan"
+          placeholder="Max"
+        />
+      </div>
+      <div class="table-item col-1">
+        <select class="status-box" v-model="statusValue">
+          <option value="" disabled selected>Status</option>
+          <option>All</option>
+          <option>Online</option>
+          <option>Offline</option>
+        </select>
+      </div>
       <div class="table-item col-6">
         <input
           type="text"
-          v-model="searchValue"
-          placeholder="Search Sensor Name"
+          class="search-box"
+          v-model="buildingValue"
+          placeholder="Search Building"
         />
       </div>
     </div>
@@ -15,27 +45,22 @@
     <thead>
       <tr>
         <th>Name</th>
-        <!-- <th>Reading</th>
+        <th>Reading</th>
         <th>Status</th>
         <th>Building</th>
-        <th>Location</th> -->
+        <th>Location</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="sensor in filteredSensors" :key="sensor">
-        <th>
+        <th scope="row">
           {{ sensor.name }}
         </th>
+        <td>{{ sensor.reading }} KeV</td>
+        <td>{{ sensor.status }}</td>
+        <td>{{ sensor.building }}</td>
+        <td>{{ sensor.location }}</td>
       </tr>
-      <!-- <tr v-for="sensor in allSensors" :key="sensor">
-        <th v-if="sensor.status == 'Online'" scope="row">
-          {{ sensor.name }}
-        </th>
-        <td v-if="sensor.status == 'Online'">{{ sensor.reading }} KeV</td>
-        <td v-if="sensor.status == 'Online'">{{ sensor.status }}</td>
-        <td v-if="sensor.status == 'Online'">{{ sensor.building }}</td>
-        <td v-if="sensor.status == 'Online'">{{ sensor.location }}</td>
-      </tr> -->
     </tbody>
   </table>
 </template>
@@ -48,17 +73,41 @@ export default {
   computed: {
     ...mapGetters(["allSensors"]),
     filteredSensors() {
-      let tempRecipes = this.allSensors;
+      let filteredSensors = this.allSensors;
 
       // Process search input
       if (this.searchValue != "" && this.searchValue) {
-        tempRecipes = tempRecipes.filter((item) => {
-          return item.name
+        filteredSensors = filteredSensors.filter((sensor) => {
+          return sensor.name
             .toUpperCase()
             .includes(this.searchValue.toUpperCase());
         });
       }
-      return tempRecipes;
+
+      if (this.lessThan)
+        filteredSensors = filteredSensors.filter((sensor) => {
+          return sensor.reading <= this.lessThan;
+        });
+
+      if (this.greaterThan)
+        filteredSensors = filteredSensors.filter((sensor) => {
+          return sensor.reading >= this.greaterThan;
+        });
+
+      if (this.buildingValue != "" && this.buildingValue) {
+        filteredSensors = filteredSensors.filter((sensor) => {
+          return sensor.building
+            .toUpperCase()
+            .includes(this.buildingValue.toUpperCase());
+        });
+      }
+
+      if (this.statusValue && this.statusValue != "All")
+        filteredSensors = filteredSensors.filter((sensor) => {
+          return sensor.status == this.statusValue;
+        });
+
+      return filteredSensors;
     },
   },
   mounted() {
@@ -71,50 +120,11 @@ export default {
   },
   data() {
     return {
-      items: this.allSensors,
       searchValue: "",
-      recipes: [
-        {
-          title: "Pizza",
-          description: "Yummy pizza for those lazy days",
-          ingredients: [
-            "Dough",
-            "Tomato Paste",
-            "Cheese",
-            "Bell Pepper",
-            "Onion",
-          ],
-          cookingTime: 60,
-          img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        },
-        {
-          title: "Burritos",
-          description: "Healthy yet very tasty burritos",
-          ingredients: [
-            "Burritos",
-            "Kidney beans",
-            "Onion",
-            "Tomato",
-            "Bell Pepper",
-          ],
-          cookingTime: 30,
-          img: "https://images.unsplash.com/photo-1566740933430-b5e70b06d2d5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        },
-        {
-          title: "Tomato Soup",
-          description: "A tasty tomato soup for the cold winter",
-          ingredients: ["Tomatoes", "Onion", "Oregano"],
-          cookingTime: 45,
-          img: "https://images.unsplash.com/photo-1553881781-4c55163dc5fd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        },
-        {
-          title: "Ice Cream",
-          description: "Just because... Ice Cream",
-          ingredients: ["Whole milk", "Cream", "Eggs", "Sugar"],
-          cookingTime: 120,
-          img: "https://images.unsplash.com/photo-1515037028865-0a2a82603f7c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1321&q=80",
-        },
-      ],
+      buildingValue: "",
+      statusValue: "",
+      lessThan: null,
+      greaterThan: null,
     };
   },
 };
@@ -122,13 +132,61 @@ export default {
 
 <style scoped>
 .searchbar {
-  background-color: rgb(63, 63, 94);
+  background-color: rgb(37, 37, 51);
   margin: 0px;
   margin-top: 40px;
+  padding: 0px;
+  border-top: 2px solid rgb(37, 37, 51);
+  border-bottom: 2px solid rgb(37, 37, 51);
+  min-height: 30px;
 }
-.table-menu {
+.search-box {
+  background: rgb(37, 37, 51);
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  color: rgb(179, 179, 179);
+  text-align: center;
+  vertical-align: middle;
+  height: 35px;
+}
+.reading-range-min {
+  background: rgb(37, 37, 51);
+  border-radius: 5px 0px 0px 5px;
+  border: none;
+  outline: none;
+  color: rgb(179, 179, 179);
+  text-align: center;
+  vertical-align: middle;
+  max-width: 50px;
+  height: 35px;
+}
+.reading-range-max {
+  background: rgb(37, 37, 51);
+  border-radius: 0px 5px 5px 0px;
+  border: none;
+  outline: none;
+  color: rgb(179, 179, 179);
+  text-align: center;
+  vertical-align: middle;
+  height: 35px;
+  max-width: 60px;
+}
+
+.table-item {
   padding: 0px;
 }
+
+.status-box {
+  background: rgb(37, 37, 51);
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  color: rgb(179, 179, 179);
+  height: 100%;
+  max-width: 100px;
+}
+
 .sensor-table {
   color: white;
   background-color: rgb(63, 63, 94);

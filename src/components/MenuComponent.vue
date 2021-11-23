@@ -2,7 +2,7 @@
   <div class="bar container-fluid">
     <div class="menu row col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
       <div class="menu-part brand col-1">RUM</div>
-      <div class="menu-part hello col-10">Hello {{ getName.username }}</div>
+      <div class="menu-part hello col-9">Hello {{ getName.username }}</div>
       <div class="menu-part col-1">
         <button
           class="nav-item logout-button"
