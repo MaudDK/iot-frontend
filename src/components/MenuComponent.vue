@@ -2,7 +2,34 @@
   <div class="bar container-fluid">
     <div class="menu row col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
       <div class="menu-part brand col-1">RUM</div>
-      <div class="menu-part hello col-9">Hello {{ getName.username }}</div>
+      <div class="menu-part brand col-1" v-if="!notifPage">
+        <button
+          class="nav-item view-button"
+          type="button"
+          @click="changeView()"
+        >
+          HUD
+        </button>
+      </div>
+      <div class="menu-part brand col-1" v-if="!notifPage">
+        <button
+          class="nav-item notifications-button"
+          type="button"
+          @click="toNotis()"
+        >
+          Notifications
+        </button>
+      </div>
+      <div class="menu-part brand col-2" v-if="notifPage">
+        <button
+          class="nav-item dashboard-button"
+          type="button"
+          @click="toDash()"
+        >
+          Dashboard
+        </button>
+      </div>
+      <div class="menu-part hello col-8">Hello {{ getName.username }}</div>
       <div class="menu-part col-1">
         <button
           class="nav-item logout-button"
@@ -21,10 +48,21 @@
 import { mapGetters } from "vuex";
 export default {
   name: "MenuComponent",
+  props: {
+    notifPage: Boolean,
+  },
   methods: {
     logout() {
       this.$store.dispatch("logout");
-      this.$router.push({ name: "Home" });
+    },
+    changeView() {
+      this.$emit("changeView");
+    },
+    toNotis() {
+      this.$router.push("/notifications");
+    },
+    toDash() {
+      this.$router.push("/dashboard");
     },
   },
   computed: {
@@ -88,6 +126,57 @@ export default {
   color: white;
 }
 
+.view-button {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 40px;
+  background: #4e9caf;
+  color: #fff;
+  font-size: 18px;
+  transition: 0.7s;
+  padding: 0px;
+}
+
+.view-button:hover {
+  background: #33adff;
+  color: white;
+}
+
+.notifications-button {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 40px;
+  background: #afa54e;
+  color: #fff;
+  font-size: 18px;
+  transition: 0.7s;
+  padding: 0px;
+}
+
+.notifications-button:hover {
+  background: #33adff;
+  color: white;
+}
+
+.dashboard-button {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 40px;
+  background: #4e9caf;
+  color: #fff;
+  font-size: 18px;
+  transition: 0.7s;
+  padding: 0px;
+}
+
+.dashboard-button:hover {
+  background: #33adff;
+  color: white;
+}
+
 .filter-button {
   border: none;
   outline: none;
@@ -98,6 +187,5 @@ export default {
   font-size: 18px;
   transition: 0.7s;
   padding: 0px;
-  /* border-right: 2px solid #9e49ff9c; */
 }
 </style>

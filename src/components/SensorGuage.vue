@@ -58,6 +58,7 @@
         v-bind:location="sensor.location"
         v-bind:status="sensor.status"
         v-bind:reading="sensor.reading"
+        v-bind:alert="sensor.alert"
       />
     </div>
   </div>

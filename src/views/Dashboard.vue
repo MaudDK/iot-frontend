@@ -1,37 +1,12 @@
 <template>
   <div class="dashboard container-fluid">
-    <div class="row">
-      <div class="dash">
-        <div class="bar container-fluid">
-          <div class="menu row col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <div class="menu-part brand col-1">RUM</div>
-            <div class="menu-part brand col-1">
-              <button
-                class="nav-item view-button"
-                type="button"
-                @click="changeView()"
-              >
-                HUD
-              </button>
-            </div>
-            <div class="menu-part hello col-9">
-              Hello {{ getName.username }}
-            </div>
-            <div class="menu-part col-1">
-              <button
-                class="nav-item logout-button"
-                v-if="isLogged"
-                type="button"
-                @click="logout()"
-              >
-                Logout
-              </button>
-            </div>
-          </div>
-        </div>
-        <SensorGuage v-if="!toggleView" />
-        <SensorTable v-if="toggleView" />
-      </div>
+    <div class="dash">
+      <MenuComponent
+        v-bind:notifPage="isNotifPage"
+        v-on:changeView="onHudClick"
+      />
+      <SensorGuage v-if="!toggleView" />
+      <SensorTable v-if="toggleView" />
     </div>
   </div>
 </template>
@@ -40,19 +15,20 @@
 // @ is an alias to /src
 import SensorGuage from "../components/SensorGuage.vue";
 import SensorTable from "../components/SensorTable.vue";
-import { mapGetters } from "vuex";
+import MenuComponent from "../components/MenuComponent.vue";
 export default {
   name: "Dashboard",
   components: {
     SensorGuage,
     SensorTable,
+    MenuComponent,
   },
   methods: {
     logout() {
       this.$store.dispatch("logout");
       this.$router.push({ name: "Home" });
     },
-    changeView() {
+    onHudClick() {
       if (this.toggleView) {
         this.toggleView = false;
       } else {
@@ -60,12 +36,11 @@ export default {
       }
     },
   },
-  computed: {
-    ...mapGetters(["getName", "isLogged"]),
-  },
+  computed: {},
   data() {
     return {
       toggleView: false,
+      isNotifPage: false,
     };
   },
 };
@@ -75,6 +50,11 @@ export default {
   min-height: 100vh;
   padding: 0px;
   background-color: rgb(26, 29, 48);
+  overflow: hidden;
+}
+.dashboard {
+  padding: 0px;
+  overflow: hidden;
 }
 
 .bar {
@@ -101,7 +81,6 @@ export default {
   font-family: "Courier New", Courier, monospace;
   font-size: 18px;
   font-weight: bolder;
-  /* border-right: 2px solid #9e49ff9c; */
 }
 .hello {
   color: white;
@@ -111,7 +90,6 @@ export default {
   font-family: "Courier New", Courier, monospace;
   font-size: 18px;
   font-weight: bolder;
-  /* border-right: 2px solid #9e49ff9c; */
 }
 
 .logout-button {
@@ -148,6 +126,23 @@ export default {
   color: white;
 }
 
+.notification-button {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 40px;
+  background: #ffa600;
+  color: #fff;
+  font-size: 18px;
+  transition: 0.7s;
+  padding: 0px;
+}
+
+.notification-button:hover {
+  background: #33adff;
+  color: white;
+}
+
 .filter-button {
   border: none;
   outline: none;
@@ -158,6 +153,5 @@ export default {
   font-size: 18px;
   transition: 0.7s;
   padding: 0px;
-  /* border-right: 2px solid #9e49ff9c; */
 }
 </style>
