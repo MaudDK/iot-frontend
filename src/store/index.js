@@ -7,6 +7,7 @@ export default createStore({
   state: {
     user: null,
     sensors: null,
+    notifications: null,
   },
   mutations: {
     setUserData(state, userData) {
@@ -22,6 +23,10 @@ export default createStore({
 
     setUserSensors(state,data){
       state.sensors = data;
+    },
+
+    setUserNotifications(state,data){
+      state.notifications = data;
     }
   },
   actions: {
@@ -59,13 +64,33 @@ export default createStore({
         });
       }, 5000);
     },
-
-
+    notifications({ commit }, credentials) {
+      return axios.get("/api/notifications", credentials).then(({ data }) => {
+        commit("setUserNotifications", data);
+      });
+    },
+    timednotifications({ commit }, credentials) {
+      setInterval(() => {
+        axios.get("/api/notifications", credentials).then(({ data }) => {
+        commit("setUserNotifications", data);
+        });
+      }, 2000);
+    },
+    clearNotifs(credentials,id) {
+      let url = "/api/notifications/"
+      url += id.id;
+      console.log(url);
+      return axios.delete(url, credentials);
+    },
+    clearAllNotifs(credentials) {
+      return axios.delete("/api/notifications/", credentials);
+    },
   },
   getters: {
     getName: (state) => state.user.user,
     isLogged: (state) => !!state.user,
     allSensors: (state) => state.sensors,
+    allNotifications: (state) => state.notifications,
   },
   modules: {},
 });

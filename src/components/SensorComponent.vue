@@ -1,5 +1,8 @@
 <template>
-  <div class="sensor-card d-flex justify-content-center m-1">
+  <div
+    class="sensor-card-online d-flex justify-content-center m-1"
+    v-if="alert == 'Normal'"
+  >
     <div class="sensor-background-layer">
       <div class="content">
         <h3 class="sensor-title">{{ name }}</h3>
@@ -9,6 +12,84 @@
           Location:{{ location }}
           <br />
           Status: {{ status }}
+          <br />
+          Alert: {{ alert }}
+          <br />
+        </p>
+        <div class="reading-layout">
+          <div class="sensor-reading">{{ reading }}</div>
+          <div class="sensor-unit">KeV</div>
+        </div>
+        <p class="reading-info">Gamma Ray Energy</p>
+      </div>
+    </div>
+  </div>
+  <div
+    class="sensor-card-offline d-flex justify-content-center m-1"
+    v-if="alert == 'Error'"
+  >
+    <div class="sensor-background-layer">
+      <div class="content">
+        <h3 class="sensor-title">{{ name }}</h3>
+        <p class="sensor-info">
+          Building: {{ building }}
+          <br />
+          Location:{{ location }}
+          <br />
+          Status: {{ status }}
+          <br />
+          Alert: {{ alert }}
+          <br />
+        </p>
+        <div class="reading-layout">
+          <div class="sensor-reading">{{ reading }}</div>
+          <div class="sensor-unit">KeV</div>
+        </div>
+        <p class="reading-info">Gamma Ray Energy</p>
+      </div>
+    </div>
+  </div>
+  <div
+    class="sensor-card-warning d-flex justify-content-center m-1"
+    v-if="alert == 'Warning'"
+  >
+    <div class="sensor-background-layer">
+      <div class="content">
+        <h3 class="sensor-title">{{ name }}</h3>
+        <p class="sensor-info">
+          Building: {{ building }}
+          <br />
+          Location:{{ location }}
+          <br />
+          Status: {{ status }}
+          <br />
+          Alert: {{ alert }}
+          <br />
+        </p>
+        <div class="reading-layout">
+          <div class="sensor-reading">{{ reading }}</div>
+          <div class="sensor-unit">KeV</div>
+        </div>
+        <p class="reading-info">Gamma Ray Energy</p>
+      </div>
+    </div>
+  </div>
+  <div
+    class="sensor-card-critical d-flex justify-content-center m-1"
+    v-if="alert == 'Critical'"
+  >
+    <div class="sensor-background-layer">
+      <div class="content">
+        <h3 class="sensor-title">{{ name }}</h3>
+        <p class="sensor-info">
+          Building: {{ building }}
+          <br />
+          Location:{{ location }}
+          <br />
+          Status: {{ status }}
+          <br />
+          Alert: {{ alert }}
+          <br />
         </p>
         <div class="reading-layout">
           <div class="sensor-reading">{{ reading }}</div>
@@ -29,24 +110,62 @@ export default {
     location: String,
     status: String,
     reading: Number,
+    alert: String,
   },
 };
 </script>
 
 <style scoped>
-.sensor-card {
-  /* border: 5px solid rgb(100, 151, 96); */
-  border: 2px solid rgb(152, 235, 146);
+.sensor-card-online {
+  border: 4px solid #28a745;
   border-radius: 100%;
   width: 250px;
   height: 250px;
   overflow: hidden;
   align-items: center;
-  /* background-color: rgb(75, 81, 119); */
   background-image: url("../assets/back.png");
   background-size: 160%;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 0 0 1000px rgba(140, 108, 182, 0.315);
+  box-shadow: inset 0 0 0 1000px rgba(135, 182, 108, 0.315);
+}
+
+.sensor-card-offline {
+  border: 4px solid #dc7235;
+  border-radius: 100%;
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+  align-items: center;
+  background-image: url("../assets/back.png");
+  background-size: 160%;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 0 1000px #dc723575;
+}
+
+.sensor-card-critical {
+  border: 4px solid #dc3545;
+  border-radius: 100%;
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+  align-items: center;
+  background-image: url("../assets/back.png");
+  background-size: 160%;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 0 1000px rgba(184, 77, 77, 0.514);
+}
+
+.sensor-card-warning {
+  border: 4px solid #dcb535;
+  border-radius: 100%;
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+  align-items: center;
+  background-image: url("../assets/back.png");
+  background-size: 160%;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 0 1000px rgba(182, 152, 108, 0.514);
 }
 
 .sensor-info {
@@ -80,7 +199,7 @@ export default {
 
 .reading-layout {
   position: relative;
-  top: 20px;
+  top: 10px;
   right: 9px;
 }
 .sensor-unit {
@@ -99,6 +218,7 @@ export default {
 .reading-info {
   font-size: 0.8em;
   padding: 0px;
+  margin-bottom: 35px;
 }
 
 .content {

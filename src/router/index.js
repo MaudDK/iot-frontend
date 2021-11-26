@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Register from "../views/Register.vue";
+import Notifications from "../views/Notifications.vue"
 // import store from "../store";
 
 const routes = [
@@ -31,14 +32,15 @@ const routes = [
       title:"Dashboard",
       auth: true,
     },
-    // beforeEnter: (to, from, next) =>{
-    //   if(store.state.authenticated == false){
-    //     next(false);
-    //   }
-    //   else{
-    //     next();
-    //   }
-    // }
+  },
+  {
+    path: "/notifications",
+    name: "notifications",
+    component: Notifications,
+    meta:{
+      title:"Notifications",
+      auth: true,
+    },
   },
 ];
 
