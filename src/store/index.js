@@ -62,7 +62,7 @@ export default createStore({
         axios.get("/api/sensors", credentials).then(({ data }) => {
         commit("setUserSensors", data);
         });
-      }, 10000);
+      }, 5000);
     },
     notifications({ commit }, credentials) {
       return axios.get("/api/notifications", credentials).then(({ data }) => {
@@ -74,10 +74,17 @@ export default createStore({
         axios.get("/api/notifications", credentials).then(({ data }) => {
         commit("setUserNotifications", data);
         });
-      }, 10000);
+      }, 2000);
     },
-
-
+    clearNotifs(credentials,id) {
+      let url = "/api/notifications/"
+      url += id.id;
+      console.log(url);
+      return axios.delete(url, credentials);
+    },
+    clearAllNotifs(credentials) {
+      return axios.delete("/api/notifications/", credentials);
+    },
   },
   getters: {
     getName: (state) => state.user.user,

@@ -1,9 +1,6 @@
 <template>
   <div class="notification container-fluid">
-    <MenuComponent
-      v-bind:notifPage="isNotifPage"
-      v-on:changeView="onHudClick"
-    />
+    <MenuComponent v-bind:notifPage="isNotifPage" />
     <div class="searchbar container-fluid">
       <div class="row filters col-12">
         <div class="table-item col-1">
@@ -16,15 +13,14 @@
             <option class="critical">Critical</option>
           </select>
         </div>
-        <div class="table-item col-4">
-          From
+        <div class="table-item col-5">
           <input
             type="date"
             class="date-range-min"
             v-model="greaterThan"
             placeholder="Min"
           />
-          To
+          <h4 class="date-to">To</h4>
           <input
             type="date"
             class="date-range-max"
@@ -41,6 +37,15 @@
           <th>Message</th>
           <th>Date</th>
           <th>Time</th>
+          <th class="clear-notif">
+            <button
+              class="notifications-button"
+              type="button"
+              @click="clearAllNotifications()"
+            >
+              Clear Notifications
+            </button>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -72,6 +77,15 @@
           <td>{{ notification.message }}</td>
           <td>{{ notification.updated_at.split("T")[0] }}</td>
           <td>{{ notification.updated_at.split("T")[1].split(".")[0] }}</td>
+          <td class="clear-notif">
+            <button
+              class="notifications-button notif-one"
+              type="button"
+              @click="clearNotification(notification.id)"
+            >
+              Delete
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -87,7 +101,18 @@ export default {
   components: {
     MenuComponent,
   },
-  methods: {},
+  methods: {
+    clearNotification(value) {
+      this.$store.dispatch("clearNotifs", {
+        id: value,
+      });
+      alert("Deleting notification please wait");
+    },
+    clearAllNotifications() {
+      this.$store.dispatch("clearAllNotifs");
+      alert("Deleting all notifications please wait");
+    },
+  },
   computed: {
     ...mapGetters(["allNotifications"]),
     filteredNotifications() {
@@ -119,7 +144,6 @@ export default {
   },
   data() {
     return {
-      toggleView: false,
       isNotifPage: true,
       alertLevel: null,
       greaterThan: null,
@@ -186,8 +210,14 @@ export default {
 .table-item {
   color: white;
   display: flex;
+  margin-left: 25px;
   justify-content: center;
   text-align: center;
+}
+.date-to {
+  font-size: 20px;
+  margin: 5px;
+  margin-bottom: 0px;
 }
 .status-box {
   background: rgb(37, 37, 51);
@@ -199,6 +229,25 @@ export default {
   max-width: 100px;
 }
 
+.notifications-button {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 40px;
+  background: #5d4eaf;
+  color: #fff;
+  font-size: 14px;
+  transition: 0.7s;
+  padding: 0px;
+}
+
+.clear-notif {
+  padding: 0px;
+}
+
+.notif-one {
+  background-color: #a81f1f !important;
+}
 .warning {
   background-color: rgb(207, 181, 32);
 }

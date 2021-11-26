@@ -12,6 +12,9 @@
           Location:{{ location }}
           <br />
           Status: {{ status }}
+          <br />
+          Alert: {{ alert }}
+          <br />
         </p>
         <div class="reading-layout">
           <div class="sensor-reading">{{ reading }}</div>
@@ -34,6 +37,8 @@
           Location:{{ location }}
           <br />
           Status: {{ status }}
+          <br />
+          Alert: {{ alert }}
           <br />
         </p>
         <div class="reading-layout">
@@ -58,6 +63,8 @@
           <br />
           Status: {{ status }}
           <br />
+          Alert: {{ alert }}
+          <br />
         </p>
         <div class="reading-layout">
           <div class="sensor-reading">{{ reading }}</div>
@@ -80,6 +87,8 @@
           Location:{{ location }}
           <br />
           Status: {{ status }}
+          <br />
+          Alert: {{ alert }}
           <br />
         </p>
         <div class="reading-layout">

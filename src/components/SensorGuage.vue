@@ -1,15 +1,15 @@
 <template>
   <div class="searchbar container-fluid">
     <div class="row filters col-12">
-      <div class="table-item col-3">
+      <div class="d-flex table-item col-3">
         <input
           type="text"
-          class="search-box"
+          class="search-box responsive-text"
           v-model="searchValue"
           placeholder="Search Name"
         />
       </div>
-      <div class="table-item col-2">
+      <div class="d-flex table-item col-2">
         <input
           type="number"
           class="reading-range-min"
@@ -23,7 +23,7 @@
           placeholder="Max"
         />
       </div>
-      <div class="table-item col-1">
+      <div class="d-flex table-item col-1">
         <select class="status-box" v-model="statusValue">
           <option value="" disabled selected>Status</option>
           <option>All</option>
@@ -193,5 +193,16 @@ export default {
   color: rgb(179, 179, 179);
   height: 100%;
   max-width: 100px;
+}
+@media screen and (max-width: 659px) {
+  input::-webkit-input-placeholder {
+    font-size: 10px !important;
+  }
+  .status-box {
+    font-size: 10px !important;
+  }
+  .search-box {
+    width: 60px;
+  }
 }
 </style>
